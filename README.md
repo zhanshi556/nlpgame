@@ -54,20 +54,29 @@ $env:OPENAI_API_KEY="your-api-key-here"
 
 **Option 2 — `.env` file**
 
-Create a `.env` file in the project root:
+1. Install the `python-dotenv` package:
+
+```bash
+pip install python-dotenv
+```
+
+2. Create a `.env` file in the project root directory:
 
 ```
 OPENAI_API_KEY=your-api-key-here
 ```
 
-> ⚠️ **Never commit your `.env` file or API key to version control.** Add `.env` to your `.gitignore`.
-
-The application reads the key with:
+3. Load the `.env` file at the top of your Python entry point (e.g. `main.py`):
 
 ```python
+from dotenv import load_dotenv
 import os
+
+load_dotenv()  # reads variables from .env into the environment
 api_key = os.environ.get("OPENAI_API_KEY")
 ```
+
+> ⚠️ **Never commit your `.env` file or API key to version control.** The `.gitignore` in this project already excludes `.env` automatically.
 
 ## Getting Started
 
