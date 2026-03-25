@@ -33,6 +33,42 @@ The user profile section tracks each player's progress and personalization setti
 - Persistent user profiles with progress tracking
 - Multi-language support via NLP models
 
+## Configuration
+
+### API Key Setup
+
+The game uses an AI API (e.g. OpenAI) for NLP features. Set your API key as an environment variable before running the game.
+
+**Option 1 — Environment variable (recommended)**
+
+```bash
+# Linux / macOS
+export OPENAI_API_KEY="your-api-key-here"
+
+# Windows (Command Prompt)
+set OPENAI_API_KEY=your-api-key-here
+
+# Windows (PowerShell)
+$env:OPENAI_API_KEY="your-api-key-here"
+```
+
+**Option 2 — `.env` file**
+
+Create a `.env` file in the project root:
+
+```
+OPENAI_API_KEY=your-api-key-here
+```
+
+> ⚠️ **Never commit your `.env` file or API key to version control.** Add `.env` to your `.gitignore`.
+
+The application reads the key with:
+
+```python
+import os
+api_key = os.environ.get("OPENAI_API_KEY")
+```
+
 ## Getting Started
 
 ```bash
@@ -42,6 +78,9 @@ cd nlpgame
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Set your API key (see Configuration section above)
+export OPENAI_API_KEY="your-api-key-here"
 
 # Start the game
 python main.py
